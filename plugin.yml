@@ -1,0 +1,5 @@
+name: Linked Chests
+version: 0.0
+main: com.bubbamc.LinkedChests
+author: Jason
+description: link chests to a shared inventory
