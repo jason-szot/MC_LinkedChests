@@ -3,3 +3,8 @@ version: 0.0
 main: com.bubbamc.LinkedChests
 author: Jason
 description: link chests to a shared inventory
+
+commands:
+    chestlink:
+        usage: /<command> <add|remove|list>
+        description: chestlink command
