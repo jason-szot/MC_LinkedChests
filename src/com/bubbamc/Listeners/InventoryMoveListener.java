@@ -13,7 +13,7 @@ public class InventoryMoveListener implements Listener{
 	
 	@EventHandler
 	public void onInventoryMove(InventoryMoveItemEvent e) {
-		
+		//TODO: hopper pushing to and pulling from a chest
 	}
 	
 }

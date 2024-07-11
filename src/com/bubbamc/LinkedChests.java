@@ -1,7 +1,10 @@
 package com.bubbamc;
 
+import java.util.ArrayList;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -9,21 +12,18 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.bubbamc.Listeners.InventoryMoveListener;
+import com.bubbamc.Listeners.PlayerOpenChestListener;
 
 public class LinkedChests extends JavaPlugin {
 
-	/* 
-	 * config file stores info:
-	 * names of linked groups - (linkedGroups.<group name>) - check if the group name exists to avoid conflicts
-	 * ChestLocation.linkedGroup - (x,y,z.linkedGroup.<group name>) - will only have one group per x,y,z location (no multiple groups on one chest)
-	 * Inventory serialized - (inventory.GroupName.slot.<Item>) - set(inventory." + groupName + "." + i, Item
-	*/
-
-	
+	ArrayList<String> groups;
+	ArrayList<Location> locations;
+	ArrayList<LinkedChestObject> linkedChests;
 	
 	public void onEnable() {
 		
 		Bukkit.getServer().getPluginManager().registerEvents(new InventoryMoveListener(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new PlayerOpenChestListener(this), this);
 		Bukkit.getServer().getLogger().info("Linked Chests v" + this.getDescription().getVersion() + " enabled!");
 	}
 	
@@ -52,11 +52,11 @@ public class LinkedChests extends JavaPlugin {
 			sender.sendMessage(ChatColor.RED + "This command is for players only");
 			return true;
 		}
-		
-		
 		return false;
-		
-		
+	}
+	
+	public ArrayList<String> getGroups(){
+		return this.groups;
 	}
 	
 }
